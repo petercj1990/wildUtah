@@ -2,10 +2,9 @@
 
 import mongoose from 'mongoose';
 
-var ThingSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+var ResearcherSchema = new mongoose.Schema({
+  firsName: {type: String},
+  lastName: {type: String}
 });
 
-export default mongoose.model('Thing', ThingSchema);
+export default mongoose.model('Researcher', ResearcherSchema);

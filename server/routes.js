@@ -11,6 +11,22 @@ export default function(app) {
   // Insert routes below
   app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
+  app.use('/api/amphibian', require('./api/amphibian'));
+  app.use('/api/animal', require('./api/animal'));
+  app.use('/api/bird', require('./api/bird'));
+  app.use('/api/contain', require('./api/contain'));
+  app.use('/api/event', require('./api/event'));
+  app.use('/api/fish', require('./api/fish'));
+  app.use('/api/insect', require('./api/insect'));
+  app.use('/api/livesIn', require('./api/livesIn'));
+  app.use('/api/mammal', require('./api/mammal'));
+  app.use('/api/note', require('./api/note'));
+  app.use('/api/observation', require('./api/observation'));
+  app.use('/api/occurrence', require('./api/occurrence'));
+  app.use('/api/reptile', require('./api/reptile'));
+  app.use('/api/research', require('./api/research'));
+  app.use('/api/researcher', require('./api/researcher'));
+  app.use('/api/zone', require('./api/zone'));
 
   app.use('/auth', require('./auth').default);
 

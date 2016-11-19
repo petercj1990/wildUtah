@@ -4,7 +4,7 @@ angular.module('utahWildApp')
   .config(function($stateProvider) {
     $stateProvider
       .state('notes', {
-        url: '/notes',
+        url: '/observations',
         template: '<notes></notes>'
       });
   });

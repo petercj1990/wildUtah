@@ -2,10 +2,14 @@
 
 import mongoose from 'mongoose';
 
-var ThingSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+var EventSchema = new mongoose.Schema({
+  OBVID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Observation'
+  },
+  eventName: {type: String},
+  description: {type: String},
+  weather: {type: String}
 });
 
-export default mongoose.model('Thing', ThingSchema);
+export default mongoose.model('Event', EventSchema);

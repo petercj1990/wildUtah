@@ -3,6 +3,9 @@
 (function() {
 
 class AnimalsController {
+  this.newAnimal= {
+
+  }
 
   constructor($http, $scope, socket) {
     this.$http = $http;
@@ -25,11 +28,11 @@ class AnimalsController {
     if (this.newAnimal) {
       this.$http.post('/api/Animal', { 
         /*
-          name
-          genus
-          diet
-          family
-          reproduction
+          name:
+          genus:
+          diet:
+          family:
+          reproduction:
           sub-family:
         */
 

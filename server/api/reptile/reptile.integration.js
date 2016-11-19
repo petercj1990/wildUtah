@@ -3,40 +3,40 @@
 var app = require('../..');
 import request from 'supertest';
 
-var newThing;
+var newReptile;
 
-describe('Thing API:', function() {
+describe('Reptile API:', function() {
 
-  describe('GET /api/things', function() {
-    var things;
+  describe('GET /api/reptiles', function() {
+    var reptiles;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things')
+        .get('/api/reptiles')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          things = res.body;
+          reptiles = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      things.should.be.instanceOf(Array);
+      reptiles.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/things', function() {
+  describe('POST /api/reptiles', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/things')
+        .post('/api/reptiles')
         .send({
-          name: 'New Thing',
-          info: 'This is the brand new thing!!!'
+          name: 'New Reptile',
+          info: 'This is the brand new reptile!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -44,55 +44,55 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          newThing = res.body;
+          newReptile = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created thing', function() {
-      newThing.name.should.equal('New Thing');
-      newThing.info.should.equal('This is the brand new thing!!!');
+    it('should respond with the newly created reptile', function() {
+      newReptile.name.should.equal('New Reptile');
+      newReptile.info.should.equal('This is the brand new reptile!!!');
     });
 
   });
 
-  describe('GET /api/things/:id', function() {
-    var thing;
+  describe('GET /api/reptiles/:id', function() {
+    var reptile;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/things/' + newThing._id)
+        .get('/api/reptiles/' + newReptile._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          thing = res.body;
+          reptile = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      thing = {};
+      reptile = {};
     });
 
-    it('should respond with the requested thing', function() {
-      thing.name.should.equal('New Thing');
-      thing.info.should.equal('This is the brand new thing!!!');
+    it('should respond with the requested reptile', function() {
+      reptile.name.should.equal('New Reptile');
+      reptile.info.should.equal('This is the brand new reptile!!!');
     });
 
   });
 
-  describe('PUT /api/things/:id', function() {
-    var updatedThing;
+  describe('PUT /api/reptiles/:id', function() {
+    var updatedReptile;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/things/' + newThing._id)
+        .put('/api/reptiles/' + newReptile._id)
         .send({
-          name: 'Updated Thing',
-          info: 'This is the updated thing!!!'
+          name: 'Updated Reptile',
+          info: 'This is the updated reptile!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Thing API:', function() {
           if (err) {
             return done(err);
           }
-          updatedThing = res.body;
+          updatedReptile = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedThing = {};
+      updatedReptile = {};
     });
 
-    it('should respond with the updated thing', function() {
-      updatedThing.name.should.equal('Updated Thing');
-      updatedThing.info.should.equal('This is the updated thing!!!');
+    it('should respond with the updated reptile', function() {
+      updatedReptile.name.should.equal('Updated Reptile');
+      updatedReptile.info.should.equal('This is the updated reptile!!!');
     });
 
   });
 
-  describe('DELETE /api/things/:id', function() {
+  describe('DELETE /api/reptiles/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/reptiles/' + newReptile._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -130,9 +130,9 @@ describe('Thing API:', function() {
         });
     });
 
-    it('should respond with 404 when thing does not exist', function(done) {
+    it('should respond with 404 when reptile does not exist', function(done) {
       request(app)
-        .delete('/api/things/' + newThing._id)
+        .delete('/api/reptiles/' + newReptile._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

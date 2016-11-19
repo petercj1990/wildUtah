@@ -2,10 +2,10 @@
 
 import mongoose from 'mongoose';
 
-var ThingSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+var MammalSchema = new mongoose.Schema({
+  AID: {type: mongoose.Schema.Types.ObjectId, ref: 'Animal'},
+  migration: {type: String},
+  hibernation: {type: Boolean}
 });
 
-export default mongoose.model('Thing', ThingSchema);
+export default mongoose.model('Mammal', MammalSchema);

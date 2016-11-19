@@ -2,10 +2,12 @@
 
 import mongoose from 'mongoose';
 
-var ThingSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+var AmphibianSchema = new mongoose.Schema({
+  AID:  {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Animal'
+  },
+  isWet: {type: Boolean}
 });
 
-export default mongoose.model('Thing', ThingSchema);
+export default mongoose.model('Amphibian', AmphibianSchema);

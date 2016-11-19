@@ -2,10 +2,10 @@
 
 import mongoose from 'mongoose';
 
-var ThingSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+var LivesInSchema = new mongoose.Schema({
+  ZID: {type: mongoose.Schema.Types.ObjectId, ref: 'Zone'},
+  AID: {type: mongoose.Schema.Types.ObjectId, ref: 'Animal'},
+  population: {type: Number}
 });
 
-export default mongoose.model('Thing', ThingSchema);
+export default mongoose.model('LivesIn', LivesInSchema);

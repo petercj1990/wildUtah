@@ -16,12 +16,17 @@
     </div>
   </div>
 
-  <form class="thing-form">
-    <label>Syncs in realtime across clients</label>
+  <form class="animal-form">
+    <label>Add a New Animal</label>
     <p class="input-group">
-      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="$ctrl.newThing">
+      <input type="text" class="form-control" placeholder="name" ng-model="$ctrl.newAnimal.name">
+      <input type="text" class="form-control" placeholder="name" ng-model="$ctrl.newAnimal.family">
+      <input type="text" class="form-control" placeholder="name" ng-model="$ctrl.newAnimal.genus">
+      <input type="text" class="form-control" placeholder="name" ng-model="$ctrl.newAnimal.diet">
+      <input type="text" class="form-control" placeholder="name" ng-model="$ctrl.newAnimal.reproduction">
       <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addThing()">Add New</button>
+      
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addAnimal()">Add New Animal</button>
       </span>
     </p>
   </form>

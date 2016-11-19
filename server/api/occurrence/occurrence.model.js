@@ -2,10 +2,10 @@
 
 import mongoose from 'mongoose';
 
-var ThingSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+var OccurrenceSchema = new mongoose.Schema({
+	ZID: {type: mongoose.Schema.Types.ObjectId, ref: 'Zone'},
+	EID: {type: mongoose.Schema.Types.ObjectId, ref: 'Event'},
+	OID: {type: mongoose.Schema.Types.ObjectId, ref: 'Observation'}
 });
 
-export default mongoose.model('Thing', ThingSchema);
+export default mongoose.model('Occurrence', OccurrenceSchema);

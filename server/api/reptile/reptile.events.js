@@ -1,15 +1,15 @@
 /**
- * Thing model events
+ * Reptile model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-import Thing from './thing.model';
-var ThingEvents = new EventEmitter();
+import Reptile from './reptile.model';
+var ReptileEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-ThingEvents.setMaxListeners(0);
+ReptileEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -20,14 +20,14 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  Thing.schema.post(e, emitEvent(event));
+  Reptile.schema.post(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc) {
-    ThingEvents.emit(event + ':' + doc._id, doc);
-    ThingEvents.emit(event, doc);
+    ReptileEvents.emit(event + ':' + doc._id, doc);
+    ReptileEvents.emit(event, doc);
   }
 }
 
-export default ThingEvents;
+export default ReptileEvents;

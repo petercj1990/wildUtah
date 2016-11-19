@@ -2,10 +2,8 @@
 
 import mongoose from 'mongoose';
 
-var ThingSchema = new mongoose.Schema({
-  name: String,
-  info: String,
-  active: Boolean
+var ZoneSchema = new mongoose.Schema({
+	popTotal: {type: Number}
 });
 
-export default mongoose.model('Thing', ThingSchema);
+export default mongoose.model('Zone', ZoneSchema);
