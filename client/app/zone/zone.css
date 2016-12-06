@@ -25,3 +25,7 @@
 .navbar-text {
   margin-left: 15px;
 }
+
+#form-control{
+  width: 200px;
+}

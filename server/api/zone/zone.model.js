@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 
 var ZoneSchema = new mongoose.Schema({
-	popTotal: {type: Number}
+	habitat: [{type: String}]
 });
 
 export default mongoose.model('Zone', ZoneSchema);

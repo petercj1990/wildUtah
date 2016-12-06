@@ -1,8 +1,46 @@
-<header class="hero-unit" id="banner">
+<header ng class="hero-unit" id="banner">
   <div class="container">
-    <h1>Welcome to Utah Wild</h1>
-    <p class="lead">login to view your notes</p>
+    <h1>Zone Database</h1>
+    <p class="lead"></p>
   </div>
+    <label>add an animal to a zone</label>
+      <select class="dropdown" ng-model="selectedZone" ng-options="zone._id for zone in zones"></select>
+      </span>
+      <select class="dropdown" ng-model="selectedAnimal" ng-options="animal.name for animal in animals"></select>
+      </span>
+      <input type="text" class="form-control" placeholder="Population" ng-model="$ctrl.population">
+
+      <button type="submit" class="btn btn-primary" ng-click="$ctrl.addAnimaltoZone( selectedZone, selectedAnimal)">Add an Animal to a Zone</button>
+    </p>
 </header>
 
 
+<div class="container">
+  <div class="searchArea">
+  <select class="dropdown" ng-model="searchZone" ng-options="zone._id for zone in zones"></select>
+  <button  ng-click="$ctrl.searchResults = $ctrl.searchGo(searchZone)">Search</button>
+    <table>
+   <!--  ng-if="$ctrl.searchResults.length != 0" -->
+      <tr ng-if="$ctrl.searchResults.length != 0" ng-repeat="animal in $ctrl.searchResults"> 
+                <!-- im here -->
+                <td>
+                {{animal.name}}
+                </td>
+                <td>
+                  {{animal.family}}
+                </td>
+                <td>
+                  {{animal.genus}}
+                </td>
+                <td>
+                  {{animal.pop}}
+                </td>
+      </tr>
+      <tr ng-if="$ctrl.searchResults.length == 0"> 
+                <!-- im here -->
+                <td>chose a zone to see the animals in it</td>
+      </tr>
+    </table>
+
+  </div>
+</div>

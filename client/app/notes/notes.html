@@ -4,12 +4,12 @@
 	</h1>
 	<form class="notes-form">
 
-			<select ng-model="selectedAnimal" ng-options="animal for animal in animals"></select>
+			<select ng-model="$ctrl.selectedAnimal" ng-options="animal.name for animal in $ctrl.animals"></select>
 
-			<select ng-model="selectedZone" ng-options="zone for zone in zones"></select>
+			<select ng-model="$ctrl.selectedZone" ng-options="zone._id for zone in $ctrl.zones"></select>
 
 		    <p class="input-group">
-		      <input type="text" class="form-control" placeholder="Observation." ng-model="$ctrl.newThing">
+		      <input type="text" class="form-control" placeholder="Observation." ng-model="$ctrl.newNote">
 		      <span class="input-group-btn">
 		        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addNote()">Add New</button>
 		      </span>
@@ -17,6 +17,6 @@
 	</form>
 </div>
 
-<div ng-repeat= "">
-	
+<div ng-repeat="value in $ctrl.search">
+	{{value.name}}
 </div>

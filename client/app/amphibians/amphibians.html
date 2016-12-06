@@ -1,0 +1,32 @@
+<div class="container">
+ <table>
+   <!--  ng-if="$ctrl.searchResults.length != 0" -->
+      <tr ng-if="$ctrl.amphibians.length != 0" ng-repeat="amphibian in $ctrl.amphibians"> 
+                <!-- im here -->
+                <td>
+                <a href="/">{{amphibian.name}}</a>
+                </td>
+                <td>
+                  {{amphibian.family}}
+                </td>
+                <td>
+                  {{amphibian.genus}}
+                </td>
+                <td>
+                  {{amphibian.population}}
+                </td>
+                <td>
+                  {{amphibian.diet}}
+                </td>
+                <td>
+                  {{amphibian.isWet}}
+                </td>
+      </tr>
+      <tr ng-if="$ctrl.amphibians.length == 0"> 
+                im here
+                <td>there are no animals of this type</td>
+      </tr>
+  </table>
+</div>
+
+

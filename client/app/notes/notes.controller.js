@@ -17,15 +17,18 @@ class NotesController {
   $onInit() {
     this.$http.get('/api/animal').then(response => {
       this.animals = response.data;
+      console.log(this.animals)
       this.socket.syncUpdates('animal', this.animals);
     });
 
     this.$http.get('/api/zone').then(response => {
       this.zones = response.data;
+      console.log(this.zones)
       this.socket.syncUpdates('zone', this.zones);
     });
     this.$http.get('/api/note').then(response => {
       this.notes = response.data;
+      console.log(this.notes)
       this.socket.syncUpdates('note', this.note);
     });
   }

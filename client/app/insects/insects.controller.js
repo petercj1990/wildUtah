@@ -2,7 +2,7 @@
 
 (function() {
 
-class AnimalsController {
+class InsectsController {
   // this.newAnimal= {
 
   // }
@@ -11,7 +11,7 @@ class AnimalsController {
     this.$http = $http;
     this.socket = socket;
     this.awesomeThings = [];
-    this.animals;
+    this.insects;
     this.animal;
     this.amphibian;
     this.bird;
@@ -33,8 +33,8 @@ class AnimalsController {
       this.socket.syncUpdates('thing', this.awesomeThings);
     });
     this.$http.get('/api/Animal').then(response => {
-      this.animals = response.data;
-      this.socket.syncUpdates('animals', this.animals);;
+      this.insects = response.data;
+      this.socket.syncUpdates('insects', this.insects);;
     });
   }
 
@@ -157,9 +157,9 @@ class AnimalsController {
 
 
 angular.module('utahWildApp')
-  .component('animals', {
-    templateUrl: 'app/animals/animals.html',
-    controller: AnimalsController
+  .component('insects', {
+    templateUrl: 'app/insects/insects.html',
+    controller: InsectsController
   });
 
 })();
