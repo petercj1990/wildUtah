@@ -9,14 +9,16 @@
 			<select ng-model="$ctrl.selectedZone" ng-options="zone._id for zone in $ctrl.zones"></select>
 
 		    <p class="input-group">
-		      <input type="text" class="form-control" placeholder="Observation." ng-model="$ctrl.newNote">
+		      <input type="text" class="form-control" placeholder="Observation" ng-model="$ctrl.newNote">
+		      <input type="text" class="form-control" placeholder="Weather" ng-model="$ctrl.newWeather">
+		      <input type="text" class="form-control" placeholder="Description" ng-model="$ctrl.newDescription">
 		      <span class="input-group-btn">
-		        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addNote()">Add New</button>
+		        <button type="submit" class="btn btn-primary" ng-click="$ctrl.addNote($ctrl.newNote)">Add New</button>
 		      </span>
 		    </p>
 	</form>
 </div>
 
-<div ng-repeat="value in $ctrl.search">
+<!-- <div ng-repeat="value in $ctrl.search">
 	{{value.name}}
-</div>
+</div> -->

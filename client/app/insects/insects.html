@@ -1,50 +1,5 @@
-<header ng-show="$ctrl.first" ng class="hero-unit" id="banner">
-  <div class="container">
-    <h1>Welcome to the animal database</h1>
-    <p class="lead"></p>
-  </div>
-    <label>Animal type</label>
-      <select class="dropdown" ng-model="selectedType" ng-options="type for type in types"></select>
-      </span>
-      <button type="submit" class="btn btn-primary" ng-click="$ctrl.choseType(selectedType)">Add New Animal</button>
-    </p>
-</header>
-
-<header ng-show="!$ctrl.first" class="hero-unit" id="banner">
-  <div class="container">
-    <h1>Welcome to Utah Wild</h1>
-    <p class="lead"></p>
-  </div>
-
-  <form class="animal-form">
-    <label>Add a New Animal</label>
-    <p class="input-group">
-      <div>
-      <input type="text" class="form-control" placeholder="name" ng-model="$ctrl.newAnimal.name">
-      <input type="text" class="form-control" placeholder="family" ng-model="$ctrl.newAnimal.family">
-      <input type="text" class="form-control" placeholder="genus" ng-model="$ctrl.newAnimal.genus">
-      <input type="text" class="form-control" placeholder="diet" ng-model="$ctrl.newAnimal.diet">
-      <input type="text" class="form-control" placeholder="reproduction" ng-model="$ctrl.newAnimal.reproduction">
-      <!-- optional paramaters -->
-	  <input ng-show="$ctrl.amphibian" type="text" class="form-control" placeholder="is wet" ng-model="$ctrl.newAnimal.isWet">
-	  <input ng-show="$ctrl.bird||$ctrl.fish||$ctrl.mammal" type="text" class="form-control" placeholder="Migration" ng-model="$ctrl.newAnimal.migration">
-	  <input ng-show="$ctrl.bird" type="text" class="form-control" placeholder="Hunting Type" ng-model="$ctrl.newAnimal.huntType">
-	  <input ng-show="$ctrl.bird" type="text" class="form-control" placeholder="Nesting Type" ng-model="$ctrl.newAnimal.nestingType">
-	  <input ng-show="$ctrl.fish" type="text" class="form-control" placeholder="Stagnation" ng-model="$ctrl.newAnimal.stagnation">
-	  <input ng-show="$ctrl.insect" type="text" class="form-control" placeholder="Community" ng-model="$ctrl.newAnimal.community">
-	  <input ng-show="$ctrl.mammal" type="text" class="form-control" placeholder="Hibernation" ng-model="$ctrl.newAnimal.hibernation">
-	  <input ng-show="$ctrl.reptile" type="text" class="form-control" placeholder="Venomus" ng-model="$ctrl.newAnimal.venom">
-      </div>
-      <span class="input-group-btn">
-
-      </span>
-      </span>
-      <div>
-      <button type="submit" class="btn btn-primary" ng-click="$ctrl.createAnimal($ctrl.newAnimal)">Add New Animal</button>
-      </div>
-      </span>
-    </p>
-  </form>
+<header  ng class="hero-unit" id="banner">
+  heres the insects
 </header>
 
 

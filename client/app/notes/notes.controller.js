@@ -4,10 +4,11 @@
 
 class NotesController {
 
-  constructor($http, $scope, socket) {
+  constructor($http, $scope, Auth, socket) {
     this.$http = $http;
     this.socket = socket;
-    this.awesomeThings = [];
+    this.notes = [];
+    this.weatherType = ['Sun', 'Rain', 'Overcast', 'Snowing', 'Hail'];
 
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
@@ -16,32 +17,46 @@ class NotesController {
 
   $onInit() {
     this.$http.get('/api/animal').then(response => {
-      this.animals = response.data;
       console.log(this.animals)
       this.socket.syncUpdates('animal', this.animals);
     });
 
     this.$http.get('/api/zone').then(response => {
       this.zones = response.data;
-      console.log(this.zones)
+      //console.log(this.zones)
       this.socket.syncUpdates('zone', this.zones);
     });
-    this.$http.get('/api/note').then(response => {
-      this.notes = response.data;
-      console.log(this.notes)
-      this.socket.syncUpdates('note', this.note);
+    this.$http.get('/api/observation').then(response => {
+      this.observations = response.data;
+      //console.log(this.observations)
+      this.socket.syncUpdates('observations', this.observations);
+    });
+    this.$http.get('/api/weather').then(response => {
+      this.weather = response.data;
+      //console.log(this.weather)
+      this.socket.syncUpdates('weather', this.weather);
     });
   }
 
-  addNote() {
-    if (this.newAnimal) {
-      this.$http.post('/api/note', { name: this.newNote });
-      this.newNote= '';
-    }
-  }
+  addNote(newnote) {
+    if (this.newNote) {
+      this.$http.post('/api/observation', { 
+        note: newnote,
+        date: new Date(dateString)
+      }).then(response => {
+      var obsId = response.data.id;
+        this.$http.post('/api/event',{
 
-  deleteNote(note) {
-    this.$http.delete('/api/animal/' + animal._id);
+        }).then(response => {
+          var eventId = response.data._id;
+          this.$http.post('/api/weather').then(response => {
+            var weatherId = response.data._id;
+            
+          });
+        });
+    });
+    this.newNote= '';
+    }
   }
 }
 

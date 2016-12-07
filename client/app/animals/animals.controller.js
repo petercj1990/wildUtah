@@ -7,8 +7,9 @@ class AnimalsController {
 
   // }
 
-  constructor($http, $scope, $state,socket) {
+  constructor($http, $scope, $state, socket) {
     this.$http = $http;
+    this.$state = $state;
     this.socket = socket;
     this.awesomeThings = [];
     this.animals;
@@ -38,22 +39,7 @@ class AnimalsController {
     });
   }
 
-  addThing() {
-    if (this.newAnimal) {
-      this.$http.post('/api/Animal', { 
-        /*
-          name:
-          genus:
-          diet:
-          family:
-          reproduction:
-          sub-family:
-        */
 
-      });
-      this.newAnimal = '';
-    }
-  }
   choseType(choseType) {
     console.log("making and animal");
     console.log(choseType);
@@ -90,8 +76,8 @@ class AnimalsController {
       this.$http.post('/api/animal', { 
         family: newAnimal.family,
         genus: newAnimal.genus,
-        name: newAnimal.diet,
-        diet: newAnimal.name,
+        name: newAnimal.name,
+        diet: newAnimal.diet,
         reproduction: newAnimal.reproduction
       }).then(response =>{
         console.log(this.fish);
@@ -149,6 +135,32 @@ class AnimalsController {
     }
     this.first =true;
   }
+  //$scope.types = ['amphibian','bird','fish','insect','mammal','reptile'];
+  typeSearch(searchType){
+         if (searchType){ 
+          if(searchType === "amphibian"){
+               this.$state.go("amphibians")
+             }
+             if(searchType === "bird"){
+               this.$state.go("birds")
+             }
+             if(searchType === "fish"){
+               this.$state.go("fishes")
+             }
+             
+             if(searchType === "insect"){
+               this.$state.go("insects")
+             }
+             if(searchType === "mammal"){
+               this.$state.go("mammals")
+             }
+             if(searchType === "reptile"){
+               this.$state.go("reptiles")
+             }
+           }
+}
+
+
 
 
 }

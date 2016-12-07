@@ -1,14 +1,21 @@
-<header ng-show="$ctrl.first" ng class="hero-unit" id="banner">
-  <div class="container">
-    <h1>Welcome to the animal database</h1>
-    <p class="lead"></p>
+<div>
+  <header ng-show="$ctrl.first" ng class="hero-unit" id="banner">
+    <div class="container">
+      <h1>Welcome to the animal database</h1>
+      <p class="lead"></p>
+    </div>
+      <label>Animal type</label>
+        <select class="dropdown" ng-model="selectedType" ng-options="type for type in types"></select>
+        </span>
+        <button type="submit" class="btn btn-primary" ng-click="$ctrl.choseType(selectedType)">Add New Animal</button>
+      </p>
+  </header>
+
+  <div>
+    <select class="dropdown" ng-model="searchType" ng-options="type for type in types"></select>
   </div>
-    <label>Animal type</label>
-      <select class="dropdown" ng-model="selectedType" ng-options="type for type in types"></select>
-      </span>
-      <button type="submit" class="btn btn-primary" ng-click="$ctrl.choseType(selectedType)">Add New Animal</button>
-    </p>
-</header>
+  <button type="submit" class="btn btn-primary" ng-click="$ctrl.typeSearch(searchType)">view animals of a type</button>
+</div>
 
 <header ng-show="!$ctrl.first" class="hero-unit" id="banner">
   <div class="container">
