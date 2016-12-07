@@ -1,5 +1,38 @@
-<header  ng class="hero-unit" id="banner">
-  heres ya reptiles ya filty animal
-</header>
-
-
+<div class="container">
+ <table>
+   <!--  ng-if="$ctrl.searchResults.length != 0" -->
+      <tr>
+        <td>Name</td>
+        <td>Family</td>
+        <td>Genus</td>
+        <td>Population</td>
+        <td>Diet</td>
+        <td>Venom</td>
+      </tr>
+      <tr ng-if="$ctrl.reptile.length != 0" ng-repeat="reptile in $ctrl.reptile"> 
+                <!-- im here -->
+                <td>
+                <a href="/">{{reptile.name}}</a>
+                </td>
+                <td>
+                  {{reptile.family}}
+                </td>
+                <td>
+                  {{reptile.genus}}
+                </td>
+                <td>
+                  {{reptile.population}}
+                </td>
+                <td>
+                  {{reptile.diet}}
+                </td>
+                <td>
+                  {{reptile.venom}}
+                </td>
+      </tr>
+      <tr ng-if="$ctrl.reptile.length == 0"> 
+                im here
+                <td>there are no animals of this type</td>
+      </tr>
+  </table>
+</div>

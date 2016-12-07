@@ -2,7 +2,7 @@
 
 (function() {
 
-class FishesController {
+class FishController {
   // this.newAnimal= {
 
   // }
@@ -10,36 +10,51 @@ class FishesController {
   constructor($http, $scope, $state,socket) {
     this.$http = $http;
     this.socket = socket;
-    this.awesomeThings = [];
-    this.fishes;
-    this.animal;
-    this.amphibian;
-    this.bird;
-    this.fish;
-    this.insect;
-    this.mammal;
-    this.reptile;
-    this.first =true;
-    $scope.types = ['amphibian','bird','fish','insect','mammal','reptile'];
-
+    this.livesIn = [];
+    this.animals = [];
+    this.fish=[];
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
   }
 
   $onInit() {
-    this.$http.get('/api/things').then(response => {
-      this.awesomeThings = response.data;
-      this.socket.syncUpdates('thing', this.awesomeThings);
+    this.$http.get('/api/livesIn').then(response => {
+      this.livesIn = response.data;
+      this.socket.syncUpdates('livesIn', this.livesIn);
     });
-    this.$http.get('/api/Animal').then(response => {
-      this.fishes = response.data;
-      this.socket.syncUpdates('fishes', this.fishes);;
+    this.$http.get('/api/animal').then(response => {
+      this.animals = response.data;
+      this.socket.syncUpdates('animals', this.animals);
+    });
+    this.$http.get('/api/amphibian').then(response => {
+      this.fish = response.data;
+      console.log(this.fish)
+      for(var x = 0; x < this.fish.length; x++){
+          var totPop = 0;
+          for(var y = 0; y < this.livesIn.length; y++){
+            console.log(this.livesIn[y].AID, this.fish[x].AID)
+            if(this.livesIn[y].AID === this.fish[x].AID){
+              totPop = totPop + this.livesIn[y].population;
+              console.log(totPop)
+            }
+          }
+          this.fish[x].population = totPop;
+          for(var y = 0; y < this.animals.length; y++){
+            if(this.animals[y]._id === this.fish[x].AID){
+              this.fish[x].name = this.animals[y].name;
+              this.fish[x].family = this.animals[y].family;
+              this.fish[x].genus = this.animals[y].genus;
+              this.fish[x].diet = this.animals[y].diet;
+              this.fish[x].reproduction = this.animals[y].reproduction;
+            }
+          }
+      }
+      this.socket.syncUpdates('fish', this.fish);
     });
   }
 
-
-
+  
 
 
 }
@@ -48,9 +63,9 @@ class FishesController {
 
 
 angular.module('utahWildApp')
-  .component('fishes', {
-    templateUrl: 'app/fishes/fishes.html',
-    controller: FishesController
+  .component('fish', {
+    templateUrl: 'app/fish/fish.html',
+    controller: FishController
   });
 
 })();

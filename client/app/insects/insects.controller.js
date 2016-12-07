@@ -2,7 +2,7 @@
 
 (function() {
 
-class InsectsController {
+class InsectController {
   // this.newAnimal= {
 
   // }
@@ -10,145 +10,51 @@ class InsectsController {
   constructor($http, $scope, $state,socket) {
     this.$http = $http;
     this.socket = socket;
-    this.awesomeThings = [];
-    this.insects;
-    this.animal;
-    this.amphibian;
-    this.bird;
-    this.fish;
-    this.insect;
-    this.mammal;
-    this.reptile;
-    this.first =true;
-    $scope.types = ['amphibian','bird','fish','insect','mammal','reptile'];
-
+    this.livesIn = [];
+    this.animals = [];
+    this.insect=[];
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
   }
 
   $onInit() {
-    this.$http.get('/api/things').then(response => {
-      this.awesomeThings = response.data;
-      this.socket.syncUpdates('thing', this.awesomeThings);
+    this.$http.get('/api/livesIn').then(response => {
+      this.livesIn = response.data;
+      this.socket.syncUpdates('livesIn', this.livesIn);
     });
-    this.$http.get('/api/Animal').then(response => {
-      this.insects = response.data;
-      this.socket.syncUpdates('insects', this.insects);;
+    this.$http.get('/api/animal').then(response => {
+      this.animals = response.data;
+      this.socket.syncUpdates('animals', this.animals);
+    });
+    this.$http.get('/api/amphibian').then(response => {
+      this.insect = response.data;
+      console.log(this.insect)
+      for(var x = 0; x < this.insect.length; x++){
+          var totPop = 0;
+          for(var y = 0; y < this.livesIn.length; y++){
+            console.log(this.livesIn[y].AID, this.insect[x].AID)
+            if(this.livesIn[y].AID === this.insect[x].AID){
+              totPop = totPop + this.livesIn[y].population;
+              console.log(totPop)
+            }
+          }
+          this.insect[x].population = totPop;
+          for(var y = 0; y < this.animals.length; y++){
+            if(this.animals[y]._id === this.insect[x].AID){
+              this.insect[x].name = this.animals[y].name;
+              this.insect[x].family = this.animals[y].family;
+              this.insect[x].genus = this.animals[y].genus;
+              this.insect[x].diet = this.animals[y].diet;
+              this.insect[x].reproduction = this.animals[y].reproduction;
+            }
+          }
+      }
+      this.socket.syncUpdates('insect', this.insect);
     });
   }
 
-  addThing() {
-    if (this.newAnimal) {
-      this.$http.post('/api/Animal', { 
-        /*
-          name:
-          genus:
-          diet:
-          family:
-          reproduction:
-          sub-family:
-        */
-
-      });
-      this.newAnimal = '';
-    }
-  }
-  choseType(choseType) {
-    console.log("making and animal");
-    console.log(choseType);
-    this.selectedType = choseType;
-    if(this.selectedType == 'amphibian'){
-      this.amphibian = true;
-    }
-    if(this.selectedType == 'bird'){
-      this.bird = true;
-    }
-    if(this.selectedType == 'fish'){
-      //console.log("imma fish");
-      this.fish = true;
-      console.log(this.fish);
-    }
-    if(this.selectedType == 'insect'){
-      this.insect = true;
-    }
-    if(this.selectedType == 'mammal'){
-      this.mammal = true;
-    }
-    if(this.selectedType == 'reptile'){
-      this.reptile = true;
-    }
-    if(this.first===true){
-      console.log(this.first)
-      this.first = false;
-    }
-
-  };
-  createAnimal(newAnimal) {
-    this.newAnimal={};
-    if (newAnimal) {
-      this.$http.post('/api/animal', { 
-        family: newAnimal.family,
-        genus: newAnimal.genus,
-        name: newAnimal.diet,
-        diet: newAnimal.name,
-        reproduction: newAnimal.reproduction
-      }).then(response =>{
-        console.log(this.fish);
-        console.log(response.data);
-        var _id = response.data._id
-         if(this.amphibian === true){
-            this.$http.post('/api/amphibian', { 
-              AID: _id,
-              isWet: newAnimal.isWet
-            })
-            console.log("amphibian");
-          }
-          if(this.bird  === true){
-            console.log("bird");
-            this.$http.post('/api/bird', { 
-              AID: _id,
-              migration: newAnimal.migration,
-              huntType: newAnimal.huntType,
-              nestingType: newAnimal.nestingType
-            })
-          }
-          if(this.fish  === true){
-            console.log("fish");
-            this.$http.post('/api/fish', { 
-              AID: _id,
-              migration: newAnimal.migration,
-              waterStagnation: newAnimal.waterStagnation
-            })
-          }
-          
-          if(this.insect  === true){
-            console.log("insect"); 
-            this.$http.post('/api/insect', { 
-              AID: _id,
-              community: newAnimal.community
-            })
-          }
-          if(this.mammal  === true){
-            console.log("mammal");
-            this.$http.post('/api/mammal', { 
-              AID: _id,
-              migration: newAnimal.migration,
-              hibernation: newAnimal.hibernation
-            })
-          }
-          if(this.reptile  === true){
-            console.log("reptile"); 
-            this.$http.post('/api/reptile', { 
-              AID: _id,
-              venom: newAnimal.venom
-            })
-          }
-      });
-      
-    }
-    this.first =true;
-  }
+  
 
 
 }
@@ -157,9 +63,9 @@ class InsectsController {
 
 
 angular.module('utahWildApp')
-  .component('insects', {
-    templateUrl: 'app/insects/insects.html',
-    controller: InsectsController
+  .component('insect', {
+    templateUrl: 'app/insect/insect.html',
+    controller: InsectController
   });
 
 })();
