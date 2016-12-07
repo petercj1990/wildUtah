@@ -3,8 +3,9 @@
 </header>
 
 <div class="container">
- <table>
+ <table class="pure-table">
    <!--  ng-if="$ctrl.searchResults.length != 0" -->
+   <tbody>
       <tr>
         <td>Name</td>
         <td>Family</td>
@@ -41,6 +42,7 @@
       <tr ng-if="$ctrl.amphibians.length == 0"> 
                 <td>there are no animals of this type</td>
       </tr>
+    </tbody>
   </table>
 </div>
 
