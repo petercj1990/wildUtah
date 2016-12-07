@@ -20,7 +20,7 @@ export default function(app) {
   app.use('/api/insect', require('./api/insect'));
   app.use('/api/livesIn', require('./api/livesIn'));
   app.use('/api/mammal', require('./api/mammal'));
-  app.use('/api/note', require('./api/note'));
+  app.use('/api/weather', require('./api/weather'));
   app.use('/api/observation', require('./api/observation'));
   app.use('/api/occurrence', require('./api/occurrence'));
   app.use('/api/reptile', require('./api/reptile'));

@@ -3,40 +3,40 @@
 var app = require('../..');
 import request from 'supertest';
 
-var newNote;
+var newWeather;
 
-describe('Note API:', function() {
+describe('Weather API:', function() {
 
-  describe('GET /api/notes', function() {
-    var notes;
+  describe('GET /api/weathers', function() {
+    var weathers;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/notes')
+        .get('/api/weathers')
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          notes = res.body;
+          weathers = res.body;
           done();
         });
     });
 
     it('should respond with JSON array', function() {
-      notes.should.be.instanceOf(Array);
+      weathers.should.be.instanceOf(Array);
     });
 
   });
 
-  describe('POST /api/notes', function() {
+  describe('POST /api/weathers', function() {
     beforeEach(function(done) {
       request(app)
-        .post('/api/notes')
+        .post('/api/weathers')
         .send({
-          name: 'New Note',
-          info: 'This is the brand new note!!!'
+          name: 'New Weather',
+          info: 'This is the brand new weather!!!'
         })
         .expect(201)
         .expect('Content-Type', /json/)
@@ -44,55 +44,55 @@ describe('Note API:', function() {
           if (err) {
             return done(err);
           }
-          newNote = res.body;
+          newWeather = res.body;
           done();
         });
     });
 
-    it('should respond with the newly created note', function() {
-      newNote.name.should.equal('New Note');
-      newNote.info.should.equal('This is the brand new note!!!');
+    it('should respond with the newly created weather', function() {
+      newWeather.name.should.equal('New Weather');
+      newWeather.info.should.equal('This is the brand new weather!!!');
     });
 
   });
 
-  describe('GET /api/notes/:id', function() {
-    var note;
+  describe('GET /api/weathers/:id', function() {
+    var weather;
 
     beforeEach(function(done) {
       request(app)
-        .get('/api/notes/' + newNote._id)
+        .get('/api/weathers/' + newWeather._id)
         .expect(200)
         .expect('Content-Type', /json/)
         .end((err, res) => {
           if (err) {
             return done(err);
           }
-          note = res.body;
+          weather = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      note = {};
+      weather = {};
     });
 
-    it('should respond with the requested note', function() {
-      note.name.should.equal('New Note');
-      note.info.should.equal('This is the brand new note!!!');
+    it('should respond with the requested weather', function() {
+      weather.name.should.equal('New Weather');
+      weather.info.should.equal('This is the brand new weather!!!');
     });
 
   });
 
-  describe('PUT /api/notes/:id', function() {
-    var updatedNote;
+  describe('PUT /api/weathers/:id', function() {
+    var updatedWeather;
 
     beforeEach(function(done) {
       request(app)
-        .put('/api/notes/' + newNote._id)
+        .put('/api/weathers/' + newWeather._id)
         .send({
-          name: 'Updated Note',
-          info: 'This is the updated note!!!'
+          name: 'Updated Weather',
+          info: 'This is the updated weather!!!'
         })
         .expect(200)
         .expect('Content-Type', /json/)
@@ -100,27 +100,27 @@ describe('Note API:', function() {
           if (err) {
             return done(err);
           }
-          updatedNote = res.body;
+          updatedWeather = res.body;
           done();
         });
     });
 
     afterEach(function() {
-      updatedNote = {};
+      updatedWeather = {};
     });
 
-    it('should respond with the updated note', function() {
-      updatedNote.name.should.equal('Updated Note');
-      updatedNote.info.should.equal('This is the updated note!!!');
+    it('should respond with the updated weather', function() {
+      updatedWeather.name.should.equal('Updated Weather');
+      updatedWeather.info.should.equal('This is the updated weather!!!');
     });
 
   });
 
-  describe('DELETE /api/notes/:id', function() {
+  describe('DELETE /api/weathers/:id', function() {
 
     it('should respond with 204 on successful removal', function(done) {
       request(app)
-        .delete('/api/notes/' + newNote._id)
+        .delete('/api/weathers/' + newWeather._id)
         .expect(204)
         .end((err, res) => {
           if (err) {
@@ -130,9 +130,9 @@ describe('Note API:', function() {
         });
     });
 
-    it('should respond with 404 when note does not exist', function(done) {
+    it('should respond with 404 when weather does not exist', function(done) {
       request(app)
-        .delete('/api/notes/' + newNote._id)
+        .delete('/api/weathers/' + newWeather._id)
         .expect(404)
         .end((err, res) => {
           if (err) {

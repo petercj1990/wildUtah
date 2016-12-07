@@ -2,12 +2,12 @@
 
 var proxyquire = require('proxyquire').noPreserveCache();
 
-var noteCtrlStub = {
-  index: 'noteCtrl.index',
-  show: 'noteCtrl.show',
-  create: 'noteCtrl.create',
-  update: 'noteCtrl.update',
-  destroy: 'noteCtrl.destroy'
+var weatherCtrlStub = {
+  index: 'weatherCtrl.index',
+  show: 'weatherCtrl.show',
+  create: 'weatherCtrl.create',
+  update: 'weatherCtrl.update',
+  destroy: 'weatherCtrl.destroy'
 };
 
 var routerStub = {
@@ -19,76 +19,76 @@ var routerStub = {
 };
 
 // require the index with our stubbed out modules
-var noteIndex = proxyquire('./index.js', {
+var weatherIndex = proxyquire('./index.js', {
   'express': {
     Router: function() {
       return routerStub;
     }
   },
-  './note.controller': noteCtrlStub
+  './weather.controller': weatherCtrlStub
 });
 
-describe('Note API Router:', function() {
+describe('Weather API Router:', function() {
 
   it('should return an express router instance', function() {
-    noteIndex.should.equal(routerStub);
+    weatherIndex.should.equal(routerStub);
   });
 
-  describe('GET /api/notes', function() {
+  describe('GET /api/weathers', function() {
 
-    it('should route to note.controller.index', function() {
+    it('should route to weather.controller.index', function() {
       routerStub.get
-        .withArgs('/', 'noteCtrl.index')
+        .withArgs('/', 'weatherCtrl.index')
         .should.have.been.calledOnce;
     });
 
   });
 
-  describe('GET /api/notes/:id', function() {
+  describe('GET /api/weathers/:id', function() {
 
-    it('should route to note.controller.show', function() {
+    it('should route to weather.controller.show', function() {
       routerStub.get
-        .withArgs('/:id', 'noteCtrl.show')
+        .withArgs('/:id', 'weatherCtrl.show')
         .should.have.been.calledOnce;
     });
 
   });
 
-  describe('POST /api/notes', function() {
+  describe('POST /api/weathers', function() {
 
-    it('should route to note.controller.create', function() {
+    it('should route to weather.controller.create', function() {
       routerStub.post
-        .withArgs('/', 'noteCtrl.create')
+        .withArgs('/', 'weatherCtrl.create')
         .should.have.been.calledOnce;
     });
 
   });
 
-  describe('PUT /api/notes/:id', function() {
+  describe('PUT /api/weathers/:id', function() {
 
-    it('should route to note.controller.update', function() {
+    it('should route to weather.controller.update', function() {
       routerStub.put
-        .withArgs('/:id', 'noteCtrl.update')
+        .withArgs('/:id', 'weatherCtrl.update')
         .should.have.been.calledOnce;
     });
 
   });
 
-  describe('PATCH /api/notes/:id', function() {
+  describe('PATCH /api/weathers/:id', function() {
 
-    it('should route to note.controller.update', function() {
+    it('should route to weather.controller.update', function() {
       routerStub.patch
-        .withArgs('/:id', 'noteCtrl.update')
+        .withArgs('/:id', 'weatherCtrl.update')
         .should.have.been.calledOnce;
     });
 
   });
 
-  describe('DELETE /api/notes/:id', function() {
+  describe('DELETE /api/weathers/:id', function() {
 
-    it('should route to note.controller.destroy', function() {
+    it('should route to weather.controller.destroy', function() {
       routerStub.delete
-        .withArgs('/:id', 'noteCtrl.destroy')
+        .withArgs('/:id', 'weatherCtrl.destroy')
         .should.have.been.calledOnce;
     });
 

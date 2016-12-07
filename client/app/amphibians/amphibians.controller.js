@@ -2,7 +2,7 @@
 
 (function() {
 
-class AnimalsController {
+class AmphibiansController {
   // this.newAnimal= {
 
   // }
@@ -65,7 +65,7 @@ class AnimalsController {
 angular.module('utahWildApp')
   .component('amphibians', {
     templateUrl: 'app/amphibians/amphibians.html',
-    controller: AnimalsController
+    controller: AmphibiansController
   });
 
 })();

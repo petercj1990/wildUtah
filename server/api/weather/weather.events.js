@@ -1,15 +1,15 @@
 /**
- * Note model events
+ * Weather model events
  */
 
 'use strict';
 
 import {EventEmitter} from 'events';
-import Note from './note.model';
-var NoteEvents = new EventEmitter();
+import Weather from './weather.model';
+var WeatherEvents = new EventEmitter();
 
 // Set max event listeners (0 == unlimited)
-NoteEvents.setMaxListeners(0);
+WeatherEvents.setMaxListeners(0);
 
 // Model events
 var events = {
@@ -20,14 +20,14 @@ var events = {
 // Register the event emitter to the model events
 for (var e in events) {
   var event = events[e];
-  Note.schema.post(e, emitEvent(event));
+  Weather.schema.post(e, emitEvent(event));
 }
 
 function emitEvent(event) {
   return function(doc) {
-    NoteEvents.emit(event + ':' + doc._id, doc);
-    NoteEvents.emit(event, doc);
+    WeatherEvents.emit(event + ':' + doc._id, doc);
+    WeatherEvents.emit(event, doc);
   }
 }
 
-export default NoteEvents;
+export default WeatherEvents;

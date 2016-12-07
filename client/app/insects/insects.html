@@ -1,5 +1,41 @@
 <header  ng class="hero-unit" id="banner">
   heres the insects
 </header>
-
-
+<div class="container">
+ <table>
+   <!--  ng-if="$ctrl.searchResults.length != 0" -->
+      <tr>
+        <td>Name</td>
+        <td>Family</td>
+        <td>Genus</td>
+        <td>Population</td>
+        <td>Diet</td>
+        <td>Community</td>
+      </tr>
+      <tr ng-if="$ctrl.insect.length != 0" ng-repeat="insect in $ctrl.insect"> 
+                <!-- im here -->
+                <td>
+                <a href="/">{{insect.name}}</a>
+                </td>
+                <td>
+                  {{insect.family}}
+                </td>
+                <td>
+                  {{insect.genus}}
+                </td>
+                <td>
+                  {{insect.population}}
+                </td>
+                <td>
+                  {{insect.diet}}
+                </td>
+                <td>
+                  {{insect.community}}
+                </td>
+      </tr>
+      <tr ng-if="$ctrl.insect.length == 0"> 
+                im here
+                <td>there are no animals of this type</td>
+      </tr>
+  </table>
+</div>

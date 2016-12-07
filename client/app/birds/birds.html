@@ -1,3 +1,53 @@
+
 <header  ng class="hero-unit" id="banner">
   heres the birds
 </header>
+<div class="container">
+ <table>
+   <!--  ng-if="$ctrl.searchResults.length != 0" -->
+      <tr>
+        <td>Name</td>
+        <td>Family</td>
+        <td>Genus</td>
+        <td>Population</td>
+        <td>Diet</td>
+        <td>Migration</td>
+        <td>Hunt</td>
+        <td>Nesting</td>
+        <td>Reproduction</td>
+      </tr>
+      <tr ng-if="$ctrl.bird.length != 0" ng-repeat="bird in $ctrl.bird"> 
+                <!-- im here -->
+                <td>
+                <a href="/">{{bird.name}}</a>
+                </td>
+                <td>
+                  {{bird.family}}
+                </td>
+                <td>
+                  {{bird.genus}}
+                </td>
+                <td>
+                  {{bird.population}}
+                </td>
+                <td>
+                  {{bird.diet}}
+                </td>
+                <td>
+                  {{bird.migration}}
+                </td>
+                <td>
+                  {{bird.huntType}}
+                </td>
+                <td>
+                  {{bird.nestingType}}
+                </td>
+                <td>
+                  {{bird.reproduction}}
+                </td>
+      </tr>
+      <tr ng-if="$ctrl.bird.length == 0"> 
+                <td>there are no animals of this type</td>
+      </tr>
+  </table>
+</div>

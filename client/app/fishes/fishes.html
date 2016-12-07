@@ -1,5 +1,45 @@
 <header  ng class="hero-unit" id="banner">
   heres the fishes
 </header>
-
-
+<div class="container">
+ <table>
+   <!--  ng-if="$ctrl.searchResults.length != 0" -->
+      <tr>
+        <td>Name</td>
+        <td>Family</td>
+        <td>Genus</td>
+        <td>Population</td>
+        <td>Diet</td>
+        <td>Migration</td>
+        <td>Stagnation</td>
+      </tr>
+      <tr ng-if="$ctrl.fish.length != 0" ng-repeat="fish in $ctrl.fish"> 
+                <!-- im here -->
+                <td>
+                <a href="/">{{fish.name}}</a>
+                </td>
+                <td>
+                  {{fish.family}}
+                </td>
+                <td>
+                  {{fish.genus}}
+                </td>
+                <td>
+                  {{fish.population}}
+                </td>
+                <td>
+                  {{fish.diet}}
+                </td>
+                <td>
+                  {{fish.migration}}
+                </td>
+                <td>
+                  {{fish.stagnation}}
+                </td>
+      </tr>
+      <tr ng-if="$ctrl.fish.length == 0"> 
+                im here
+                <td>there are no animals of this type</td>
+      </tr>
+  </table>
+</div>

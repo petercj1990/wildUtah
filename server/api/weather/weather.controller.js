@@ -1,16 +1,16 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * GET     /api/notes              ->  index
- * POST    /api/notes              ->  create
- * GET     /api/notes/:id          ->  show
- * PUT     /api/notes/:id          ->  update
- * DELETE  /api/notes/:id          ->  destroy
+ * GET     /api/weathers              ->  index
+ * POST    /api/weathers              ->  create
+ * GET     /api/weathers/:id          ->  show
+ * PUT     /api/weathers/:id          ->  update
+ * DELETE  /api/weathers/:id          ->  destroy
  */
 
 'use strict';
 
 import _ from 'lodash';
-import Note from './note.model';
+import Weather from './weather.model';
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -59,43 +59,43 @@ function handleError(res, statusCode) {
   };
 }
 
-// Gets a list of Notes
+// Gets a list of Weathers
 export function index(req, res) {
-  return Note.find().exec()
+  return Weather.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Gets a single Note from the DB
+// Gets a single Weather from the DB
 export function show(req, res) {
-  return Note.findById(req.params.id).exec()
+  return Weather.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Creates a new Note in the DB
+// Creates a new Weather in the DB
 export function create(req, res) {
-  return Note.create(req.body)
+  return Weather.create(req.body)
     .then(respondWithResult(res, 201))
     .catch(handleError(res));
 }
 
-// Updates an existing Note in the DB
+// Updates an existing Weather in the DB
 export function update(req, res) {
   if (req.body._id) {
     delete req.body._id;
   }
-  return Note.findById(req.params.id).exec()
+  return Weather.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(saveUpdates(req.body))
     .then(respondWithResult(res))
     .catch(handleError(res));
 }
 
-// Deletes a Note from the DB
+// Deletes a Weather from the DB
 export function destroy(req, res) {
-  return Note.findById(req.params.id).exec()
+  return Weather.findById(req.params.id).exec()
     .then(handleEntityNotFound(res))
     .then(removeEntity(res))
     .catch(handleError(res));

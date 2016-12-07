@@ -5,6 +5,15 @@
 <div class="container">
  <table>
    <!--  ng-if="$ctrl.searchResults.length != 0" -->
+      <tr>
+        <td>Name</td>
+        <td>Family</td>
+        <td>Genus</td>
+        <td>Population</td>
+        <td>Diet</td>
+        <td>Wetness</td>
+        <td>Reproduction</td>
+      </tr>
       <tr ng-if="$ctrl.amphibians.length != 0" ng-repeat="amphibian in $ctrl.amphibians"> 
                 <!-- im here -->
                 <td>
@@ -24,6 +33,9 @@
                 </td>
                 <td>
                   {{amphibian.isWet}}
+                </td>
+                <td>
+                  {{amphibian.reproduction}}
                 </td>
       </tr>
       <tr ng-if="$ctrl.amphibians.length == 0"> 

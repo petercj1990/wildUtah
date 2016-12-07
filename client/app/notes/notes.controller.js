@@ -46,7 +46,8 @@ class NotesController {
       }).then(response => {
       var obsId = response.data.id;
         this.$http.post('/api/event',{
-
+          OBVID: obsId,
+          eventName: 
         }).then(response => {
           var eventId = response.data._id;
           this.$http.post('/api/weather').then(response => {
